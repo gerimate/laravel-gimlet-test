@@ -26,7 +26,7 @@ COPY composer.json composer.lock ./
 RUN composer install
 
 RUN php artisan key:generate
-# RUN php artisan config:cache
+RUN php artisan config:cache
 
 # Set the default command to run php-fpm
 CMD ["php-fpm"]
