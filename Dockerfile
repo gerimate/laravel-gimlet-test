@@ -1,32 +1,13 @@
-# use PHP 8.2
-FROM php:8.2-fpm
+FROM php:8.2.19-alpine
+WORKDIR /var/www/html
 
-# Install common php extension dependencies
-RUN apt-get update && apt-get install -y \
-    libfreetype-dev \
-    libjpeg62-turbo-dev \
-    libpng-dev \
-    zlib1g-dev \
-    libzip-dev \
-    unzip \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-install zip
+RUN apk update 
+RUN curl -sS https://getcomposer.org/installer | php -- --version=2.4.3 --install-dir=/usr/local/bin --filename=composer
 
-# Set the working directory
-COPY . /var/www/app
-WORKDIR /var/www/app
-RUN chown -R www-data:www-data /var/www
-
-# install composer
-COPY --from=composer:2.6.5 /usr/bin/composer /usr/local/bin/composer
-
-# copy composer.json to workdir & install dependencies
-COPY composer.json composer.lock ./
+COPY . .
 RUN composer install
 
 RUN php artisan key:generate
 RUN php artisan config:cache
 
-# Set the default command to run php-fpm
-CMD ["php-fpm"]
+CMD ["php","artisan","serve","--host=0.0.0.0"]
