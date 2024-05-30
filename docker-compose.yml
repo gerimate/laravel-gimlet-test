@@ -21,15 +21,16 @@ services:
       - laravel
 
   php:
+    container_name: php
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: php
     restart: unless-stopped
     tty: true
     expose:
       - "9000"
     volumes:
-      - .:/var/www/app
+      - ./php/main.php:/usr/src/myapp/main.php
+      - ./php/composer.json:/usr/src/myapp/composer.json
     networks:
       - laravel

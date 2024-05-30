@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
 # Set the working directory
 COPY . /var/www/app
 WORKDIR /var/www/app
+RUN chown -R www-data:www-data /var/www
 
 # install composer
 COPY --from=composer:2.6.5 /usr/bin/composer /usr/local/bin/composer
@@ -23,6 +24,9 @@ COPY --from=composer:2.6.5 /usr/bin/composer /usr/local/bin/composer
 # copy composer.json to workdir & install dependencies
 COPY composer.json composer.lock ./
 RUN composer install
+
+RUN php artisan key:generate
+# RUN php artisan config:cache
 
 # Set the default command to run php-fpm
 CMD ["php-fpm"]
