@@ -1,52 +1,15 @@
-# Laravel-MySQL-Docker
+# Laravel Gimlet Test Application
 
-Docker adalah sebuah tools yang memungkinkan kita membuat sebuah aplikasi yang terisolasi dari OS di atasnya. Artinya dalam satu kontainer ( sebutan wadah aplikasi dalam docker ) memungkinkan kita untuk menggunakan berbagai teknologi dengan beragam versi baik dari bahasa pemrograman, framework OS dan sebagainya secara lebih cepat dan fleksibel tanpa OS.
+Demo Laravel app for Gimlet. In the deployment settings, enter `8000` as the exposed port. App will run as a single container after deployment.
 
----
+Dockerfile not production ready, since .env file is included with an empty `APP_KEY` variable. Only recommended for testing/demo purposes.
 
-Dalam repository ini saya memberikan contoh penggunakan Docker Container menggunakan Docker Compose yang memungkinkan kita menjalankan aplikasi ini dengan PHP 8.1 - Apache dan Mysql:8.1 serta php my admin didalamnya tanpa harus install satu persatu dalam PC kita.
+## Gimlet
 
----
+Gimlet is a deployment tool that utilizes FluxCD. Find out more about Gimlet at [https://gimlet.io](https://gimlet.io). Gimlet is 
 
-Saya menggunakan beberapa docker image seperti :
+## Credit
 
--   php:8.2-fpm-alpine
--   nginx:alpine
+Dockerfile credit to [Asia Joumaa](https://medium.com/@asia.joumaa/deploy-a-laravel-app-into-a-docker-container-af96ac58411d).
 
-### NGINX
-
-Nginx atau dalam pronouncation-nya dibaca "Engine X" adalah sebuah web server alternative dari apache. nginx sendiri mempunyai kemampuan lebih dalam mengelola sebuah website yang mempunyai traffic yang cukup tinggi selain itu nginx mampu memproses _Request_ yang masuk secara paralel.
-
-### PHP FPM
-
-PHP-FPM adalah singkatan dari PHP FastCGI Process Manager, yaitu sebuah proses manajer untuk menjalankan aplikasi PHP melalui protokol FastCGI. Saat kita menggunakan nginx sebagai web server pilihan kita. image PHP yang didukung adalah PHP-FPM
-
-## Prerequisite
-
--   Install Docker & Docker Compose ( Yup, itu saja )
-
-## Testing
-
-Untuk menjalankan container cukup jalankan perintah :
-
-```bash
-  docker-compose up -d
-```
-
-Jika anda menemukan masalah folder _/var/www/app/storage : permission denied_
-anda bisa mengatasinya dengan cara berikut
-
-Masuk ke dalam terminal container dengan cara
-
-```bash
-  docker exec -it nginx /bin/sh
-```
-
-Lalu ketikan perintah berikut :
-
-```bash
-  chmod -R 777 /var/www/app/storage
-```
-
-untuk memberikan akses penuh terhadap directory tersebut.
-Sekian terima kasih :smile:
+Repository forked from [faidfadjri/sample-laravel-mysql-docker](https://github.com/faidfadjri/sample-laravel-mysql-docker) originally with the purpose of setting up a Laravel application for demo purposes.
