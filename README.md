@@ -6,7 +6,7 @@ Dockerfile not production ready, since .env file is included with an empty `APP_
 
 ## Gimlet
 
-Gimlet is a deployment tool that utilizes FluxCD. Find out more about Gimlet at [https://gimlet.io](https://gimlet.io). Gimlet is 
+Gimlet is a deployment tool that utilizes FluxCD. Find out more about Gimlet at [https://gimlet.io](https://gimlet.io).
 
 ## Credit
 
