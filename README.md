@@ -1,6 +1,6 @@
 # Laravel Gimlet Test Application
 
-Demo Laravel app for Gimlet. In the deployment settings, enter `8000` as the exposed port. App will run as a single container after deployment.
+Demo Laravel app for Gimlet. In the deployment settings, enter `8000` as the exposed port. App will run as a single container after deployment. For more instructions, read Gimlet documentation.
 
 Dockerfile not production ready, since .env file is included with an empty `APP_KEY` variable. Only recommended for testing/demo purposes.
 
